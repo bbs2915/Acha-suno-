@@ -1,34 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Acha Suno</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial;
-        }
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+  <title>Suno 💜</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #8e2de2, #c471ed);
+      color: white;
+    }
+
+    .page {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      transition: opacity 0.4s ease;
+    }
+
+    .active {
+      display: flex;
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 22px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: white;
+      color: #8e2de2;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* floating hearts */
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.3);
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
 </head>
+
 <body>
 
-    <h1>Acha Suno</h1>
+<!-- HEARTS -->
+<script>
+for (let i = 0; i < 20; i++) {
+  let heart = document.createElement("div");
+  heart.innerHTML = "❤";
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (10 + Math.random()*20) + "px";
+  heart.style.animationDuration = (3 + Math.random()*3) + "s";
+  document.body.appendChild(heart);
+}
+</script>
 
-    <button onclick="nextPage()">Bolo</button>
+<!-- PAGES -->
 
-    <script>
-        function nextPage() {
-            window.location.href = "page2.html";
-        }
-    </script>
+<div class="page active"><h1>suno?</h1><button onclick="next()">bolo</button></div>
+<div class="page"><h1>sunooooo?</h1><button onclick="next()">bolo</button></div>
+<div class="page"><h1>suno?</h1><button onclick="next()">bolo</button></div>
+<div class="page"><h1>sunooo naa?</h1><button onclick="next()">bolo</button></div>
+<div class="page"><h1>sun rahe ho na?</h1><button onclick="next()">bolo</button></div>
+<div class="page"><h1>pakka?</h1><button onclick="next()">Haan</button></div>
+<div class="page"><h1>promise ?</h1><button onclick="next()">ji Promise</button></div>
+<div class="page"><h1>you know na?</h1><button onclick="next()">kya</button></div>
+
+<div class="page">
+  <h1>That i love you</h1>
+  <button onclick="next()">i know baby</button>
+  <button onclick="next()">:/</button>
+</div>
+
+<div class="page">
+  <h1 id="type"></h1>
+</div>
+
+<!-- SCRIPT -->
+<script>
+let current = 0;
+let pages = document.querySelectorAll(".page");
+
+function next() {
+  pages[current].classList.remove("active");
+  current++;
+  pages[current].classList.add("active");
+
+  if (current === pages.length - 1) {
+    typeMessage();
+  }
+}
+
+let text = "Im Sorry baby that you were hurt. You mean the world to me. We have always had our fair share of ups and downs but we'll never leave each other. Sorry for saying ill leave you, You know i wont ever leave you my baby 💜";
+let i = 0;
+
+function typeMessage() {
+  let el = document.getElementById("type");
+  let interval = setInterval(() => {
+    el.innerHTML += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 40);
+}
+</script>
 
 </body>
 </html>
